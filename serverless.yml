@@ -1,3 +1,6 @@
+plugins:
+  - serverless-offline
+
 service: my-express-application
 
 custom:
@@ -28,6 +31,14 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+  getUser:
+    handler: index.handler
+    events:
+      - http: 'GET /users/{proxy+}'
+  createUser:
+    handler: index.handler
+    events:
+      - http: 'POST /users'
 
 resources:
   Resources:
